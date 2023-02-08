@@ -18,13 +18,13 @@ export class DashboardComponent {
       this.isMobile = matches;
       if (matches) {
         return [
-          { title: 'Odrađeno treninga', cols: 2, rows: 1, content: '317 treninga' },
+          { title: 'Odrađeno treninga', cols: 2, rows: 1, content: '316 treninga' },
           { title: 'Idući trening', cols: 2, rows: 1, content: 'Trening prsa i ramena' }
         ];
       }
 
       return [
-        { title: 'Odrađeno treninga', cols: 1, rows: 1, content: '317 treninga' },
+        { title: 'Odrađeno treninga', cols: 1, rows: 1, content: '316 treninga' },
         { title: 'Idući trening', cols: 1, rows: 1, content: 'Trening prsa i ramena' }
       ];
     })

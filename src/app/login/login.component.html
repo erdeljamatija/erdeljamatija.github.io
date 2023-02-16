@@ -1,0 +1,38 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
+                <mat-form-field>
+                    <input matInput placeholder="Email" name="email" [(ngModel)]="loginFormValues.email" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Password" type="password" name="password"
+                        [(ngModel)]="loginFormValues.password" required>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (ngSubmit)="onRegisterSubmit()" #registerForm="ngForm">
+                <mat-form-field>
+                    <input matInput placeholder="Email" name="email" [(ngModel)]="registerFormValues.email" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Password" type="password" name="password"
+                        [(ngModel)]="registerFormValues.password" required>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit"
+                    [disabled]="registerForm.invalid">Register</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

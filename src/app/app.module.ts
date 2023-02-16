@@ -26,9 +26,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, NavComponent, TableComponent, DashboardComponent],
+  declarations: [AppComponent, FormComponent, NavComponent, TableComponent, DashboardComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,6 +52,7 @@ import { environment } from '../environments/environment';
     MatSortModule,
     MatGridListModule,
     MatMenuModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { SupabaseService } from "./../supabase.service";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   isMobile = false;
 
@@ -18,17 +26,35 @@ export class DashboardComponent {
       this.isMobile = matches;
       if (matches) {
         return [
-          { title: 'Odrađeno treninga', cols: 2, rows: 1, content: '316 treninga' },
-          { title: 'Idući trening', cols: 2, rows: 1, content: 'Trening prsa i ramena' }
+          {
+            title: 'Odrađeno treninga',
+            cols: 1,
+            rows: 1,
+            content: '317 treninga',
+          },
+          {
+            title: 'Idući trening',
+            cols: 1,
+            rows: 1,
+            content: 'Trening prsa i ramena',
+          },
         ];
       }
 
       return [
-        { title: 'Odrađeno treninga', cols: 1, rows: 1, content: '316 treninga' },
-        { title: 'Idući trening', cols: 1, rows: 1, content: 'Trening prsa i ramena' }
+        {
+          title: 'Odrađeno treninga',
+          cols: 1,
+          rows: 1,
+          content: '316 treninga',
+        },
+        {
+          title: 'Idući trening',
+          cols: 1,
+          rows: 1,
+          content: 'Trening prsa i ramena',
+        },
       ];
     })
   );
-
-  constructor(private breakpointObserver: BreakpointObserver, private supabase: SupabaseService) { }
 }

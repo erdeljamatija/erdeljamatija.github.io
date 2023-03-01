@@ -3,13 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { SwUpdate } from '@angular/service-worker';
+import { SupabaseService } from '../services/supabase/supabase.service';
 import { TableDataSource, TableItem } from './table-datasource';
-import { SupabaseService } from "./../supabase.service";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,20 +26,21 @@ export class TableComponent {
   }
 
   ngOnInit(): void {
-
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
-        if(confirm("You're using an old version of the table. Want to update?")) {
+        if (
+          confirm("You're using an old version of the table. Want to update?")
+        ) {
           window.location.reload();
         }
       });
     }
 
-    this.supabase.getTests().then(data => {
+    this.supabase.getTests().then((data) => {
       this.data = data.data;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.table.dataSource = this.data;//this.dataSource;
+      this.table.dataSource = this.data; //this.dataSource;
 
       console.log(this.data);
     });
